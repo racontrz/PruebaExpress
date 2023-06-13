@@ -22,6 +22,25 @@ app.post('/canciones', (req, res) => {
   res.send(canciones);
 });
 
+app.put('/canciones/:id', (req, res) => {
+  const id = req.params.id;
+  const cancion = req.body;
+  const canciones = JSON.parse(fs.readFileSync('repertorio.json', 'utf-8'));
+  const index = canciones.findIndex(cancion => cancion.id == id);
+  canciones[index] = cancion;
+  fs.writeFileSync('repertorio.json', JSON.stringify(canciones));
+  res.send(canciones);
+});
+
+app.delete('/canciones/:id', (req, res) => {
+  const id = req.params.id;
+  const canciones = JSON.parse(fs.readFileSync('repertorio.json', 'utf-8'));
+  const index = canciones.findIndex(cancion => cancion.id == id);
+  canciones.splice(index, 1);
+  fs.writeFileSync('repertorio.json', JSON.stringify(canciones));
+  res.send(canciones); 
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 }); 
