@@ -1,0 +1,15 @@
+[
+  {
+    "id" : 1,
+    "titulo" : "Another Day",
+    "artista" : "Dream Theater",
+    "genero" : "Rock Progresivo"
+  },
+  {
+    "id" : 2,
+    "titulo" : "corrupto",
+    "artista" : "Cultura Pisoteada",
+    "genero" : "Rock Clasico"
+  }
+
+]

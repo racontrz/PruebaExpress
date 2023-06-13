@@ -28,9 +28,9 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="rut" class="col-sm-2 col-form-label">Tono:</label>
+          <label for="rut" class="col-sm-2 col-form-label">Genero:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="tono" value="Em" />
+            <input type="text" class="form-control" id="genero" value="Em" />
           </div>
         </div>
         <button onclick="nuevaCancion()" id="agregar" class="m-auto btn btn-success">
@@ -54,7 +54,7 @@
             <th scope="col">#</th>
             <th scope="col">Canción</th>
             <th scope="col">Artista</th>
-            <th scope="col">Tono</th>
+            <th scope="col">Genero</th>
             <th scope="col">-</th>
           </tr>
         </thead>
@@ -80,7 +80,7 @@
   let tbody = document.getElementById("cuerpo");
   let cancion = document.getElementById("cancion");
   let artista = document.getElementById("artista");
-  let tono = document.getElementById("tono");
+  let Genero = document.getElementById("genero");
 
   let canciones = [];
   window.onload = getData();
@@ -96,7 +96,7 @@
           <td>${i + 1}</td>
           <td>${c.titulo}</td>
           <td>${c.artista}</td>
-          <td>${c.tono}</td>
+          <td>${c.genero}</td>
           <td>
             <button class="btn btn-warning" onclick="prepararCancion(${i},'${c.id
           }')">Editar</button>
@@ -109,19 +109,19 @@
     });
     cancion.value = "";
     artista.value = "";
-    tono.value = "";
+    genero.value = "";
   }
 
   function nuevaCancion() {
     cancion;
     artista;
-    tono;
+    genero;
     const id = Math.floor(Math.random() * 9999)
     let data = {
       id,
       titulo: cancion.value,
       artista: artista.value,
-      tono: tono.value,
+      genero: genero.value,
     };
     console.log(data);
     axios.post(url, data).then(() => getData());
@@ -137,7 +137,7 @@
   function prepararCancion(i, id) {
     cancion.value = canciones[i].titulo;
     artista.value = canciones[i].artista;
-    tono.value = canciones[i].tono;
+    genero.value = canciones[i].genero;
     document
       .getElementById("editar")
       .setAttribute("onclick", `editarCancion('${id}')`);
@@ -151,7 +151,7 @@
         id,
         titulo: cancion.value,
         artista: artista.value,
-        tono: tono.value,
+        genero: genero.value,
       })
       .then(() => {
         getData();
